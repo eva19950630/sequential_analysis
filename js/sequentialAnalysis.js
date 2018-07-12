@@ -99,6 +99,7 @@ function load_pigSaviorData(){
                 scenes.push(dataObj[i].game_scene);
             }
         }
+
         users.sort((a, b) => a - b);
         scenes.sort((a, b) => a.slice(5)-b.slice(5));
 
@@ -128,6 +129,7 @@ function selectDatas(){
             activeData.push(dataObj[i]);
         }
     }
+    // console.log(dataObj);
     console.log(activeData);
 
     // $.ajax({
