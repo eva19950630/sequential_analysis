@@ -112,6 +112,12 @@ input:focus, textarea:focus {
 	transform: none;
 }
 
+
+/* Common Select */
+.disOutline-select{
+	outline: none;
+}
+
 /* Navbar */
 .navbar {
 	background: #77C2FF;
@@ -148,7 +154,7 @@ input:focus, textarea:focus {
 	padding: 10px 0;
 }
 
-.stepdiv {
+.div-center {
 	text-align: center;
 }
 .stepTitle {
@@ -277,6 +283,23 @@ td.behavioritems {
 	text-align: left;
 }
 
+/* pigSavior */
+.sub-div {
+	width: 220px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.inlineblock {
+	display: inline-block;
+}
+
+.left-align {
+	text-align: left;
+}
+
+
+
 @media(max-width: 768px) {
 	/* Step1 - Settings */
 	.behaviortip {
@@ -286,3 +309,4 @@ td.behavioritems {
 		margin: 15px 0 0 0;
 	}
 }
+
