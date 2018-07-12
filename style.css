@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css?family=Gentium+Basic');
+@import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
+
+/* Common Style */
+* {
+	font-size: 18px;
+	font-family: 'Gentium Basic', 'Noto Sans TC', sans-serif;
+	letter-spacing: 1px;
+	color: #666;
+}
+
+hr {
+	width: 80%;
+}
+
+table {
+	border: 1px solid #7AB8EA;
+}
+table th {
+	background: #7AB8EA;
+	color: #fff;
+	padding: 5px 0;
+	text-align: center;
+	box-shadow: 0 5px 0 0 #B6D8F3;
+}
+table td {
+	padding: 8px 0;
+}
+
+/* Common Input */
+input, textarea {
+	color: #333;
+	border: 1px solid #DBDBDB;
+}
+input:focus, textarea:focus {
+	border: 2px solid #77C2FF;
+	outline: 0;
+}
+[tooltip] {
+	position: relative;
+}
+[tooltip]:before {
+	content: '';
+	display: none;
+	position: absolute;
+	z-index: 8;
+	top: 75%;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #888;
+}
+[tooltip]:after {
+	content: attr(tooltip);
+	display: none;
+	position: absolute;
+	z-index: 9;
+	top: 82%;
+	height: auto;
+	padding: 5px 10px;
+	background: #888;
+	color: #fff;
+	font-size: 12px;
+	border-radius: 3px;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+[tooltip]:hover:before,
+[tooltip]:hover:after {
+	display: block;
+}
+
+/* Common Button */
+.disOutline-btn:focus,
+.disOutline-btn:active,
+.disOutline-btn:visited {
+	outline: none;
+	color: #fff;
+}
+.custombtn {
+	width: 200px;
+	font-size: 18px;
+	background: #77C2FF;
+	color: #fff;
+	border: 1px solid #77C2FF;
+	box-shadow: 0px 5px #629FD1;
+	transition: .3s;
+}
+.custombtn:hover {
+	color: #fff;
+	box-shadow: none;
+	transform: translate(0, 5px);
+}
+.custombtn.specific {
+	background: #FF8D8D;
+	border: 1px solid #FF8D8D;
+	box-shadow: 0px 5px #D17474;
+}
+.custombtn.specific:hover {
+	box-shadow: none;
+	transform: translate(0, 5px);
+}
+.custombtn.circletype {
+	border: none;
+	border-radius: 100%;
+	width: 40px;
+	height: 40px;
+	justify-content: center;
+	box-shadow: none;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+}
+.custombtn.circletype:hover {
+	transform: none;
+}
+
+/* Navbar */
+.navbar {
+	background: #77C2FF;
+	height: 60px;
+	border: none;
+	border-radius: 0;
+	/* box-shadow: 2px 3px 12px rgba(0, 0, 0, 0.2); */
+	padding-left: .3em;
+}
+.navbar a {
+	color: #fff !important;
+	height: 60px;
+	line-height: 30px;
+	font-size: 20px;
+}
+.navbar-nav {
+	list-style-type: none;
+	height: 60px;
+	padding: 0 10px;
+}
+.navbar-nav a {
+	padding: 0 8px;
+	line-height: 60px;
+	font-size: 18px;
+}
+.navbar-nav a:hover,
+.navbar-nav a:active,
+.navbar-nav a:focus {
+	text-decoration: none;
+}
+
+/* Page Layout */
+.main {
+	padding: 10px 0;
+}
+
+.stepdiv {
+	text-align: center;
+}
+.stepTitle {
+	margin: 0 0 15px 0;
+	font-size: 22px;
+	line-height: 22px;
+	color: #629FD1;
+}
+.stepTitle i {
+	color: #629FD1;
+}
+.stepContent {
+	margin: 30px 0 0;	
+}
+
+.chooseBtns {
+	margin: 30px 0 0;
+	display: block;
+}
+.chooseBtns button {
+	margin: 0 15px 0 0;
+}
+
+#stepTwo, #stepThree {
+	display: none;
+}
+
+/* Step1 - Settings */
+.codeAddColumn {
+	background: #f8f8f8;
+	border: 1px solid #77C2FF;
+	border-radius: 10px;
+	width: 60vw;
+	max-height: 60vh;
+	overflow: auto;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
+.codeAddColumn div {
+	display: inline-block;
+}
+.codeList div {
+	height: 60px;
+	display: flex;
+    align-items: center;
+}
+
+.codeinput {
+	min-width: 50px;
+	width: 5vw;
+	text-align: center;
+}
+.behaviorinput {
+	min-width: 100px;
+	width: 25vw;
+	padding-left: 1rem;
+}
+
+.behaviortip {
+	margin: 0 25px 0 25px;
+}
+
+.codetip:before {
+	left: 70%;
+}
+.codetip:after {
+	left: 0;
+}
+.behaviortip:before {
+	left: 58%;
+}
+.behaviortip:after {
+	left: 18%;
+}
+
+.operateCodeBtns button > i {
+	color: #fff;
+	font-size: 15px;
+}
+#createCode {
+	margin: 0 8px 0 0;
+	background: #7AB8EA;
+}
+#createCode:hover {
+	background: #64A1D3;
+}
+#deleteCode {
+	display: none;
+	background: #FF7171;
+}
+#deleteCode:hover {
+	background: #E85A5A;
+}
+
+/* Step2 - Enter or import your data sample */
+.showCodeInfo {
+	width: 100%;
+}
+table.codetable {
+	margin: 0 auto;
+	margin-bottom: 30px;
+	width: 30vw;
+}
+th.codeitems-head {
+	border-right: 1px solid #fff;
+}
+td.codeitems {
+	text-align: center;
+}
+td.behavioritems {
+	padding-left: 2rem;
+}
+
+.datainput {
+	padding-left: 1rem;
+	width: 45vw;
+	height: 30vh;
+}
+
+/* Step3 - Results */
+.dataInfoList {
+	display: inline-block;
+	line-height: 30px;
+	text-align: left;
+}
+
+@media(max-width: 768px) {
+	/* Step1 - Settings */
+	.behaviortip {
+		margin: 0;
+	}
+	.operateCodeBtns {
+		margin: 15px 0 0 0;
+	}
+}
