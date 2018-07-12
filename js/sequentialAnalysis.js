@@ -122,13 +122,24 @@ function selectDatas(){
     var sceneSelect = document.getElementById("sceneList");
     var scene = sceneSelect.options[sceneSelect.selectedIndex].value;
 
-    $.ajax({
-        type: "POST",
-        url: "./python/selectData.py",
-        data: { param: "123"}
-    }).done(function(output){
-        console.log(output);
-    });
+    activeData = [];
+    for (var i in dataObj){
+        if (dataObj[i].user_id == user && dataObj[i].game_scene == scene){
+            activeData.push(dataObj[i]);
+        }
+    }
+    console.log(activeData);
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "http://163.21.245.192/PigSaviorApp/sequential_analysis/python/selectData.py",
+    //     data: { param: "123"}
+    // }).done(function(output){
+    //     console.log(output);
+    // });
+
+
+
 }
 
 
