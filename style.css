@@ -301,6 +301,9 @@ table.resulttable-content td {
 	margin: auto;
 	margin-bottom: 20px;
 }
+.sub-div.webdisk-filter {
+	width: 500px;
+}
 
 .inlineblock {
 	display: inline-block;
@@ -309,8 +312,6 @@ table.resulttable-content td {
 .left-align {
 	text-align: left;
 }
-
-
 
 @media(max-width: 768px) {
 	/* Step1 - Settings */

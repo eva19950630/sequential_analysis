@@ -300,13 +300,26 @@ function showResult() {
 }
 
 var dataObj = [];
-function load_Webdisk() {
+function load_WebdiskData() {
     $.getJSON("webdisk_inputdata.json", function(data) {
         dataObj = data;
-        // for (var i in dataObj) {
-        //     console.log(dataObj[i].account);
-        // }
+        var users = [];
+        for (var i in dataObj) {
+            if(!users.includes(dataObj[i].account)){
+                users.push(dataObj[i].account);
+            }
+        }
+
+        var userlist = "";
+        for (var i in users)
+            userlist += "<option value = "+users[i]+">"+users[i]+"</option>";
+        $('#userList_webdisk').append(userlist);
     });
+}
+
+function select_webdiskData(){
+    var user = $('#userList_webdisk').val();
+    console.log(user);
 }
 
 function load_pigSaviorData(){
@@ -339,7 +352,7 @@ function load_pigSaviorData(){
     });
 }
 
-function selectDatas(){
+function select_pigSaviorData(){
     var userSelect = document.getElementById("userList");
     var user = userSelect.options[userSelect.selectedIndex].value;
     var sceneSelect = document.getElementById("sceneList");

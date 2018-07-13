@@ -19,7 +19,7 @@
 		<div class="navbar navbar-default">
             <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
             <div class="navbar-nav">
-                <a href="#" id="clickWebdisk" onclick="load_Webdisk();">Webdisk</a>
+                <a href="#" id="clickWebdisk" onclick="load_WebdiskData();">Webdisk</a>
                 <a href="#" id="clickPigsavior" onclick="load_pigSaviorData();">PigSavior</a>
             </div>
 		</div>
@@ -86,13 +86,22 @@
             </div>
 
             <div id="webdiskAnalysis" style="display: none">
-                webdisk_analysis
+                <form>
+                    <div class="text-center">
+                        <div class="sub-div webdisk-filter">
+                            <p class="inlineblock">請選擇使用者：</p>
+                            <select id="userList_webdisk" class="disOutline-select"></select>
+                        </div>
+                        <hr>
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskData()" value="送出">
+                    </div>
+                </form>
             </div>
 
             <div id="pigsaviorAnalysis" style="display: none">
                 <!-- <div class="stepTitle div-center sub-div">pigsavior_analysis</div> -->
                 <form>
-                    <div class="div-center">
+                    <div class="text-center">
                         <div class="sub-div left-align">
                             <p class="inlineblock">請選擇使用者：</p>
                             <select id="userList" class="disOutline-select"></select>
@@ -101,7 +110,8 @@
                             <p class="inlineblock left-align">請選擇關卡：</p>
                             <select id="sceneList" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn disOutline-select" onclick="selectDatas()" value="送出">
+                        <hr>
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorData()" value="送出">
                     </div>
                 </form>
             </div>
