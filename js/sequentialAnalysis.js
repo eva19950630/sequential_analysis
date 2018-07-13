@@ -124,6 +124,8 @@ function selectDatas(){
     var scene = sceneSelect.options[sceneSelect.selectedIndex].value;
 
     activeData = [];
+    activeCode = [];
+    codes = "";
     for (var i in dataObj){
         if (dataObj[i].user_id == user && dataObj[i].game_scene == scene){
             activeData.push(dataObj[i]);
