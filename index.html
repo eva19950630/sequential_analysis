@@ -20,12 +20,12 @@
             <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
             <div class="navbar-nav">
                 <a href="#" id="clickWebdisk" onclick="load_Webdisk();">Webdisk</a>
-                <a href="#" id="clickPigsavior">PigSavior</a>
+                <a href="#" id="clickPigsavior" onclick="load_Pigsavior();">PigSavior</a>
             </div>
 		</div>
 
 		<div class="container-fluid main">
-            <div id="stepOne" class="stepdiv">
+            <div id="stepOne" class="stepdiv text-center">
                 <div class="stepTitle">Step1.&emsp;Settings</div>
                 <div class="stepContent">
                     <div class="codeAddColumn">
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div id="stepTwo" class="stepdiv">
+            <div id="stepTwo" class="stepdiv text-center">
                 <div class="stepTitle">Step2.&emsp;Enter or import your data sample</div>
                 <div class="stepContent">
                     <div class="showCodeInfo"></div>
@@ -73,12 +73,13 @@
                 </div>
             </div>
 
-            <div id="stepThree" class="stepdiv">
+            <div id="stepThree" class="stepdiv text-center">
                 <div class="stepTitle">Step3.&emsp;Results</div>
                 <div class="showDataInfo">
                     <ul class="dataInfoList"></ul>
                 </div>
-                <div class="freqMatrix"></div>
+                <div class="result"></div>
+                <hr>
                 <div class="chooseBtns">
                     <button id="backToStep1" class="btn custombtn specific disOutline-btn">Back to Step1</button>
                 </div>
