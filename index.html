@@ -20,7 +20,7 @@
             <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
             <div class="navbar-nav">
                 <a href="#" id="clickWebdisk" onclick="load_Webdisk();">Webdisk</a>
-                <a href="#" id="clickPigsavior" onclick="load_Pigsavior();">PigSavior</a>
+                <a href="#" id="clickPigsavior" onclick="load_pigSaviorData();"">PigSavior</a>
             </div>
 		</div>
 
@@ -90,8 +90,22 @@
             </div>
 
             <div id="pigsaviorAnalysis" style="display: none">
-                pigsavior_analysis
+                <!-- <div class="stepTitle div-center sub-div">pigsavior_analysis</div> -->
+                <form>
+                    <div class="div-center">
+                        <div class="sub-div left-align">
+                            <p class="inlineblock">請選擇使用者：</p>
+                            <select id="userList" class="disOutline-select"></select>
+                        </div>
+                        <div class="sub-div left-align">
+                            <p class="inlineblock left-align">請選擇關卡：</p>
+                            <select id="sceneList" class="disOutline-select"></select>
+                        </div>
+                        <input type="button" onclick="selectDatas()" value="送出">
+                    </div>
+                </form>
             </div>
+
         </div>
         
 		<!-- Javascript -->

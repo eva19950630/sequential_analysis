@@ -309,11 +309,61 @@ function load_Webdisk() {
     });
 }
 
-function load_Pigsavior() {
-    $.getJSON("pigSavior_inputdata.json", function(data) {
+function load_pigSaviorData(){
+    $.getJSON("pigSavior_inputdata.json", function(data){
         dataObj = data;
-        // for (var i in dataObj) {
-        //     console.log(dataObj[i].user_id);
-        // }
+        var users = [], scenes = [];
+        for (var i in dataObj){
+            if(!users.includes(dataObj[i].user_id)){
+                users.push(dataObj[i].user_id);
+            }
+            if(!scenes.includes(dataObj[i].game_scene)){
+                scenes.push(dataObj[i].game_scene);
+            }
+        }
+
+        users.sort((a, b) => a - b);
+        scenes.sort((a, b) => a.slice(5)-b.slice(5));
+
+        userlist = "", scenelist = "";
+        for (var i in users){
+            // console.log(users[i]);
+            userlist += "<option value = "+users[i]+">"+users[i]+"</option>";
+        }
+        document.getElementById('userList').innerHTML = userlist;
+        gamestage = "";
+        for (var i in scenes){
+            scenelist += "<option value = "+scenes[i]+">"+scenes[i]+"</option>";
+        }
+        document.getElementById('sceneList').innerHTML = scenelist;
     });
 }
+
+function selectDatas(){
+    var userSelect = document.getElementById("userList");
+    var user = userSelect.options[userSelect.selectedIndex].value;
+    var sceneSelect = document.getElementById("sceneList");
+    var scene = sceneSelect.options[sceneSelect.selectedIndex].value;
+
+    activeData = [];
+    for (var i in dataObj){
+        if (dataObj[i].user_id == user && dataObj[i].game_scene == scene){
+            activeData.push(dataObj[i]);
+        }
+    }
+    // console.log(dataObj);
+    console.log(activeData);
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "http://163.21.245.192/PigSaviorApp/sequential_analysis/python/selectData.py",
+    //     data: { param: "123"}
+    // }).done(function(output){
+    //     console.log(output);
+    // });
+
+
+
+}
+
+
