@@ -4,6 +4,7 @@ var codes = [];
 var behaviors = [];
 var data = '';
 var result = [];
+var CODE = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 $('#createCode').click(function() {
     code_id++;
@@ -346,15 +347,26 @@ function selectDatas(){
     var scene = sceneSelect.options[sceneSelect.selectedIndex].value;
 
     activeData = [];
-    activeCode = [];
+    actives = [];
     codes = "";
     for (var i in dataObj){
         if (dataObj[i].user_id == user && dataObj[i].game_scene == scene){
             activeData.push(dataObj[i]);
+            if(!actives.includes(dataObj[i].target)){
+                actives.push(dataObj[i].target);
+                codes += CODE[actives.length-1];
+            }else{
+                for(j = 0; j < actives.length; j++){
+                    if(actives[j] == dataObj[i].target){
+                        codes += CODE[j];
+                        break;
+                    }
+                }
+            }
         }
     }
-    // console.log(dataObj);
     console.log(activeData);
+    console.log(codes);
 
     // $.ajax({
     //     type: "POST",
