@@ -287,15 +287,10 @@ table.resulttable {
 th.resultitem-head {
 	width: 30vw;
 }
-table.resulttable-content {
-	/* width: 200px; */
-	/* height: 200px; */
-}
 table.resulttable-content td {
 	width: 45px;
 	height: 45px;
 }
-
 
 @media(max-width: 768px) {
 	/* Step1 - Settings */
