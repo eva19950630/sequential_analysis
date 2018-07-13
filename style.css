@@ -12,9 +12,14 @@
 hr {
 	width: 80%;
 }
+.text-center {
+	text-align: center;
+}
 
+/* Common Table */
 table {
 	border: 1px solid #7AB8EA;
+	margin: 0 auto;
 }
 table th {
 	background: #7AB8EA;
@@ -154,9 +159,6 @@ input:focus, textarea:focus {
 	padding: 10px 0;
 }
 
-.div-center {
-	text-align: center;
-}
 .stepTitle {
 	margin: 0 0 15px 0;
 	font-size: 22px;
@@ -256,15 +258,11 @@ input:focus, textarea:focus {
 	width: 100%;
 }
 table.codetable {
-	margin: 0 auto;
 	margin-bottom: 30px;
 	width: 30vw;
 }
 th.codeitems-head {
 	border-right: 1px solid #fff;
-}
-td.codeitems {
-	text-align: center;
 }
 td.behavioritems {
 	padding-left: 2rem;
@@ -281,6 +279,20 @@ td.behavioritems {
 	display: inline-block;
 	line-height: 30px;
 	text-align: left;
+}
+.dataInfoText {
+	color: #999;
+}
+
+table.resulttable {
+	width: 80vw;
+}
+th.resultitem-head {
+	width: 30vw;
+}
+table.resulttable-content td {
+	width: 45px;
+	height: 45px;
 }
 
 /* pigSavior */

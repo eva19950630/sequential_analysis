@@ -3,11 +3,6 @@ $(document).ready(function() {
 		$('#deleteCode').show();
 	});
 
-	$('#finishSettings').click(function() {
-		$('#stepOne').hide();
-		$('#stepTwo').show();
-	});
-
 	$('#finishPreparingData').click(function() {
 		$('#stepTwo').hide();
 		$('#stepThree').show();
