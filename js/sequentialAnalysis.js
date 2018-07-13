@@ -188,7 +188,7 @@ function calculate_Z(data) {
                     <tr>
                         <td></td>
                         <td class="text-center" style="width: 100px">出現頻率</td>
-                        <td class="text-center" style="width: 130px">出現機率<br>(出現頻率/${data.length})</td>`;
+                        <td class="text-center" style="width: 100px">出現機率</td>`;
     result[2] += `</tr>`;
     for (var i = 0; i < codes.length; i++) {
         result[2] += `<tr>
@@ -283,7 +283,7 @@ function calculate_Z(data) {
 }
 
 function showResult() {
-    var resultItem = ['編碼轉換頻率表', '編碼轉換機率表', '編碼出現頻率與機率表', '編碼轉換期望機率表<br>(First-order model)', '編碼轉換期望頻率表', '調整後Z分數表', '行為轉移關係圖'];
+    var resultItem = ['編碼轉換頻率表', '編碼轉換機率表', '編碼出現頻率與機率表<br>(出現機率=出現頻率/'+data.length+')', '編碼轉換期望機率表<br>(First-order model)', '編碼轉換期望頻率表', '調整後Z分數表', '行為轉移關係圖'];
     var str = `<table border=1 class="resulttable">
                     <tr>
                         <th class="resultitem-head">Item</th>
@@ -362,8 +362,4 @@ function selectDatas(){
     //     console.log(output);
     // });
 
-
-
 }
-
-
