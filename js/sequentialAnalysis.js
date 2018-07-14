@@ -10,7 +10,10 @@ var CODE = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 // user input code
 $('#createCode').click(function() {
     code_id++;
-    var str = `<div class="codeListItem" data-id="${code_id}">
+    console.log("add: code" + code_id);
+    if (code_id >= 2)
+        $('#deleteCode').show();
+    var str = `<div class="codeListItem" id="code${code_id}">
                     <div tooltip="Enter a single character. (e.g. 'A', '1')" class="codetip">
                         <span>Code:&ensp;
                             <input type="text" class="codeinput">
@@ -23,6 +26,14 @@ $('#createCode').click(function() {
                     </div>
                 </div>`;
     $('.codeList').append(str);
+});
+
+$('#deleteCode').click(function() {
+    console.log("delete: code" + code_id);
+    $('#code'+code_id).remove();
+    code_id--;
+    if (code_id < 2)
+        $('#deleteCode').hide();
 });
 
 $('#finishSettings').click(function() {
@@ -297,7 +308,6 @@ function calculate_Z(data, canvasId) {
         // make canvas high resolution
         if(window.devicePixelRatio){
             let ratio = window.devicePixelRatio;
-            console.log(ratio);
             c.setAttribute('width', c_width * ratio);
             c.setAttribute('height', c_width * ratio);
             c.style.width = c_width;
@@ -400,9 +410,9 @@ function calculate_Z(data, canvasId) {
 
 function showResult() {
     dataInfoStr = `<ul class="dataInfoList">
-                <li>Data sample: <div class="datasample"><font class="dataInfoText">${data}</font><div></li>
-                <li>Total codes: <font class="dataInfoText">${data.length}</font></li>
-                <li>Data codes -> behaviors:
+                        <li>Data sample: <div class="datasample"><font class="dataInfoText">${data}</font><div></li>
+                        <li>Total codes: <font class="dataInfoText">${data.length}</font></li>
+                        <li>Data codes -> behaviors:
                     <ul>`;
     for (var i = 0; i < codes.length; i++) {
         dataInfoStr += `<li><font class="dataInfoText">${codes[i]} -> ${behaviors[i]}</font></li>`;
@@ -426,6 +436,9 @@ function showResult() {
 
 var dataObj = [];
 function load_WebdiskData() {
+    $('.showDataInfo_webdisk').empty();
+    $('.result_webdisk').empty();
+
     $.getJSON("webdisk_inputdata.json", function(data) {
         dataObj = data;
         var users = [];
@@ -434,6 +447,7 @@ function load_WebdiskData() {
                 users.push(dataObj[i].account);
             }
         }
+        users.sort();
 
         var userlist = "";
         for (var i in users)
@@ -460,11 +474,14 @@ function select_webdiskData(){
     behaviors = ['使用模擬器', '進行測驗', '看PPT', '看影片'];
     calculate_Z(data, "fsmCanvas_webdisk");
     showResult();
-    $('.showDataInfo_webdisk').append(dataInfoStr);
+    $('.showDataInfo_webdisk').append(`<div class="stepTitle">Results</div>`+dataInfoStr);
     $('.result_webdisk').append(resultStr);
 }
 
 function load_pigSaviorData(){
+    $('.showDataInfo_pigsavior').empty();
+    $('.result_pigsavior').empty();
+
     $.getJSON("pigSavior_inputdata.json", function(data){
         dataObj = data;
         var users = [], scenes = [];
@@ -528,6 +545,6 @@ function select_pigSaviorData(){
 
     calculate_Z(data, "fsmCanvas_pigsavior");
     showResult();
-    $('.showDataInfo_pigsavior').append(dataInfoStr);
+    $('.showDataInfo_pigsavior').append(`<div class="stepTitle">Results</div>`+dataInfoStr);
     $('.result_pigsavior').append(resultStr);
 }
