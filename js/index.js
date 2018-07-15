@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	$('#createCode').click(function() {
-		$('#deleteCode').show();
-	});
+	// $('#createCode').click(function() {
+	// 	$('#deleteCode').show();
+	// });
 
 	$('#finishPreparingData').click(function() {
 		$('#stepTwo').hide();

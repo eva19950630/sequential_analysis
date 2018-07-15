@@ -283,6 +283,15 @@ td.behavioritems {
 .dataInfoText {
 	color: #999;
 }
+.datasample {
+	width: 60vw;
+	height: 100px;
+	border: 1px solid #77C2FF;
+	border-radius: 3px;
+	padding: 3px 10px;
+	overflow: scroll;
+	word-break: break-all;
+}
 
 table.resulttable {
 	width: 80vw;
@@ -297,9 +306,12 @@ table.resulttable-content td {
 
 /* pigSavior */
 .sub-div {
-	width: 220px;
+	width: 230px;
 	margin: auto;
 	margin-bottom: 20px;
+}
+.sub-div.webdisk-filter {
+	width: 500px;
 }
 
 .inlineblock {
@@ -309,8 +321,6 @@ table.resulttable-content td {
 .left-align {
 	text-align: left;
 }
-
-
 
 @media(max-width: 768px) {
 	/* Step1 - Settings */

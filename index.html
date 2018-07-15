@@ -19,7 +19,7 @@
 		<div class="navbar navbar-default">
             <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
             <div class="navbar-nav">
-                <a href="#" id="clickWebdisk" onclick="load_Webdisk();">Webdisk</a>
+                <a href="#" id="clickWebdisk" onclick="load_WebdiskData();">Webdisk</a>
                 <a href="#" id="clickPigsavior" onclick="load_pigSaviorData();">PigSavior</a>
             </div>
 		</div>
@@ -30,7 +30,7 @@
                 <div class="stepContent">
                     <div class="codeAddColumn">
                         <div class="codeList">
-                            <div class="codeListItem" data-id="1">
+                            <div class="codeListItem" id="code1">
                                 <div tooltip="Enter a single character. (e.g. 'A', '1')" class="codetip">
                                     <span>Code:&ensp;
                                         <input type="text" class="codeinput" required>
@@ -75,9 +75,7 @@
 
             <div id="stepThree" class="stepdiv text-center">
                 <div class="stepTitle">Step3.&emsp;Results</div>
-                <div class="showDataInfo">
-                    <ul class="dataInfoList"></ul>
-                </div>
+                <div class="showDataInfo"></div>
                 <div class="result"></div>
                 <hr>
                 <div class="chooseBtns">
@@ -86,7 +84,18 @@
             </div>
 
             <div id="webdiskAnalysis" style="display: none">
-                webdisk_analysis
+                <form>
+                    <div class="text-center">
+                        <div class="sub-div webdisk-filter">
+                            <p class="inlineblock">Choose User：</p>
+                            <select id="userList_webdisk" class="disOutline-select"></select>
+                        </div>
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskData()" value="Submit">
+                        <hr>
+                        <div class="showDataInfo_webdisk"></div>
+                        <div class="result_webdisk"></div>
+                    </div>
+                </form>
             </div>
 
             <div id="pigsaviorAnalysis" style="display: none">
@@ -94,14 +103,17 @@
                 <form>
                     <div class="text-center">
                         <div class="sub-div left-align">
-                            <p class="inlineblock">請選擇使用者：</p>
+                            <p class="inlineblock">Choose User：</p>
                             <select id="userList" class="disOutline-select"></select>
                         </div>
                         <div class="sub-div left-align">
-                            <p class="inlineblock left-align">請選擇關卡：</p>
+                            <p class="inlineblock left-align">Choose Stage：</p>
                             <select id="sceneList" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn disOutline-select" onclick="selectDatas()" value="送出">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorData()" value="Submit">
+                        <hr>
+                        <div class="showDataInfo_pigsavior"></div>
+                        <div class="result_pigsavior"></div>
                     </div>
                 </form>
             </div>
