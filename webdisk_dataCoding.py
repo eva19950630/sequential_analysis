@@ -1,6 +1,17 @@
 # -*- coding: UTF-8 -*-
 import json
 
+def changeToSchoolYear(date):
+    if (date.find('-') != -1):
+        dateArr = date.split('-')
+    elif (date.find('/') != -1):
+        dateArr = date.split('/')
+    # print(dateArr[1]);
+    if (int(dateArr[1]) >= 8):
+        return int(dateArr[0])-1911;
+    else:
+        return int(dateArr[0])-1912;
+
 # A: Simulator B: Quiz C: PPT D: Video
 with open ('data/behavilog.json') as f:
     behavior_json = f.read()
@@ -28,35 +39,30 @@ with open ('data/behavilog.json') as f:
         time.append(data['datetime'])
 
     index = []
-    indexCount = 0
-    for item in target:
+    for i,item in enumerate(target):
         if item in actionA:
-            target[indexCount] = 'A'
-            # print indexCount
-            index.append(indexCount)
+            target[i] = 'A'
+            index.append(i)
         elif item in actionB:
-            target[indexCount] = 'B'
-            # print indexCount
-            index.append(indexCount)
+            target[i] = 'B'
+            index.append(i)
         elif item in actionC:
-            target[indexCount] = 'C'
-            # print indexCount
-            index.append(indexCount)
+            target[i] = 'C'
+            index.append(i)
         elif item in actionD:
-            target[indexCount] = 'D'
-            # print indexCount
-            index.append(indexCount)
-        indexCount+=1
-    
+            target[i] = 'D'
+            index.append(i)
+        time[i] = str(changeToSchoolYear(time[i].split(' ')[0]));
+
     data = []
     for i in index:
         if user[i] != "" and target[i] != "" and time[i] != "":
             data.append({  
                 'account': user[i],
                 'code': target[i],
-                'time': time[i]
+                'schoolYear': time[i]
             })
 
     with open('webdisk_inputdata.json', 'w') as outfile:  
         json.dump(data, outfile, indent=4)
-    
+

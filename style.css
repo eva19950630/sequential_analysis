@@ -15,6 +15,12 @@ hr {
 .text-center {
 	text-align: center;
 }
+.text-left {
+	text-align: left;
+}
+.inlineblock {
+	display: inline-block;
+}
 
 /* Common Table */
 table {
@@ -49,7 +55,7 @@ input:focus, textarea:focus {
 	display: none;
 	position: absolute;
 	z-index: 8;
-	top: 75%;
+	top: 55%;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-bottom: 5px solid #888;
@@ -59,7 +65,7 @@ input:focus, textarea:focus {
 	display: none;
 	position: absolute;
 	z-index: 9;
-	top: 82%;
+	top: 62%;
 	height: auto;
 	padding: 5px 10px;
 	background: #888;
@@ -126,32 +132,31 @@ input:focus, textarea:focus {
 /* Navbar */
 .navbar {
 	background: #77C2FF;
-	height: 60px;
+	/* height: 60px; */
 	border: none;
 	border-radius: 0;
 	/* box-shadow: 2px 3px 12px rgba(0, 0, 0, 0.2); */
 	padding-left: .3em;
 }
-.navbar a {
+.navbar-header a {
 	color: #fff !important;
-	height: 60px;
-	line-height: 30px;
-	font-size: 20px;
+	font-size: 18px;
 }
 .navbar-nav {
 	list-style-type: none;
-	height: 60px;
+	/* height: 60px; */
 	padding: 0 10px;
 }
 .navbar-nav a {
-	padding: 0 8px;
-	line-height: 60px;
+	color: #fff !important;
 	font-size: 18px;
 }
-.navbar-nav a:hover,
-.navbar-nav a:active,
-.navbar-nav a:focus {
-	text-decoration: none;
+.dropdown a > span {
+	color: #fff;
+}
+.dropdown-menu a {
+	color: #666 !important;
+	font-size: 16px;
 }
 
 /* Page Layout */
@@ -184,6 +189,10 @@ input:focus, textarea:focus {
 	display: none;
 }
 
+.webdiskdiv, .pigsaviordiv {
+	display: none;
+}
+
 /* Step1 - Settings */
 .codeAddColumn {
 	background: #f8f8f8;
@@ -197,13 +206,13 @@ input:focus, textarea:focus {
 	padding-top: 10px;
 	padding-bottom: 20px;
 }
-.codeAddColumn div {
-	display: inline-block;
-}
 .codeList div {
 	height: 60px;
-	display: flex;
+	display: inline-block;
     align-items: center;
+}
+.operateCodeBtns {
+	display: block;
 }
 
 .codeinput {
@@ -239,14 +248,12 @@ input:focus, textarea:focus {
 	font-size: 15px;
 }
 #createCode {
-	margin: 0 8px 0 0;
 	background: #7AB8EA;
 }
 #createCode:hover {
 	background: #64A1D3;
 }
 #deleteCode {
-	display: none;
 	background: #FF7171;
 }
 #deleteCode:hover {
@@ -300,8 +307,17 @@ th.resultitem-head {
 	width: 30vw;
 }
 table.resulttable-content td {
-	width: 45px;
-	height: 45px;
+	width: 60px;
+	height: 60px;
+}
+
+.resultZ {
+	width: 100px;
+	display: inline-block;
+	line-height: 25px;
+}
+.resultZ font {
+	font-size: 16px;
 }
 
 /* pigSavior */
@@ -311,15 +327,19 @@ table.resulttable-content td {
 	margin-bottom: 20px;
 }
 .sub-div.webdisk-filter {
-	width: 500px;
+	width: 400px;
 }
 
-.inlineblock {
-	display: inline-block;
-}
 
-.left-align {
-	text-align: left;
+/* group result */
+.group-title {
+	text-align: center;
+	width: 120px;
+	border: 1px #7AB8EA solid;
+	border-radius: 10px;
+	padding: 10px;
+	color: #7AB8EA;
+	margin: 20px 0 0 10vw;
 }
 
 @media(max-width: 768px) {
@@ -331,4 +351,3 @@ table.resulttable-content td {
 		margin: 15px 0 0 0;
 	}
 }
-

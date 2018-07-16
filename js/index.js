@@ -1,8 +1,4 @@
 $(document).ready(function() {
-	// $('#createCode').click(function() {
-	// 	$('#deleteCode').show();
-	// });
-
 	$('#finishPreparingData').click(function() {
 		$('#stepTwo').hide();
 		$('#stepThree').show();
@@ -11,16 +7,32 @@ $(document).ready(function() {
 	$('#backToStep1').click(function() {
 		window.location.href = './index.html';
 	});
-	
-	$('#clickWebdisk').click(function() {
+
+	$('#clickWebdiskSingle').click(function() {
 		$('.stepdiv').hide();
-		$('#pigsaviorAnalysis').hide();
-		$('#webdiskAnalysis').show();
+		$('.pigsaviordiv').hide();
+		$('#webdiskAnalysisGroup').hide();
+		$('#webdiskAnalysisSingle').show();
 	});
 
-	$('#clickPigsavior').click(function() {
+	$('#clickWebdiskGroup').click(function() {
 		$('.stepdiv').hide();
-		$('#webdiskAnalysis').hide();
-		$('#pigsaviorAnalysis').show();
+		$('.pigsaviordiv').hide();
+		$('#webdiskAnalysisSingle').hide();
+		$('#webdiskAnalysisGroup').show();
+	});
+
+	$('#clickPigsaviorSingle').click(function() {
+		$('.stepdiv').hide();
+		$('.webdiskdiv').hide();
+		$('#pigsaviorAnalysisGroup').hide();
+		$('#pigsaviorAnalysisSingle').show();
+	});
+
+	$('#clickPigsaviorGroup').click(function() {
+		$('.stepdiv').hide();
+		$('.webdiskdiv').hide();
+		$('#pigsaviorAnalysisSingle').hide();
+		$('#pigsaviorAnalysisGroup').show();
 	});
 });

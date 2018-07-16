@@ -5,14 +5,12 @@ var data = '';
 var result = [];
 var dataInfoStr = '';
 var resultStr = '';
+var canvasId = '';
 var CODE = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 // user input code
 $('#createCode').click(function() {
     code_id++;
-    console.log("add: code" + code_id);
-    if (code_id >= 2)
-        $('#deleteCode').show();
     var str = `<div class="codeListItem" id="code${code_id}">
                     <div tooltip="Enter a single character. (e.g. 'A', '1')" class="codetip">
                         <span>Code:&ensp;
@@ -24,17 +22,18 @@ $('#createCode').click(function() {
                             <input type="text" class="behaviorinput">
                         </span>
                     </div>
+                    <div class="operateCodeBtns">
+                        <button id="deleteCode" class="btn custombtn circletype disOutline-btn" onclick="deleteCode(${code_id});">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
                 </div>`;
     $('.codeList').append(str);
 });
 
-$('#deleteCode').click(function() {
-    console.log("delete: code" + code_id);
-    $('#code'+code_id).remove();
-    code_id--;
-    if (code_id < 2)
-        $('#deleteCode').hide();
-});
+function deleteCode(id) {
+    $('#code'+id).remove();
+}
 
 $('#finishSettings').click(function() {
     $('.codeinput').each(function(index, element) {
@@ -84,14 +83,15 @@ $('#finishSettings').click(function() {
 
 $('#finishPreparingData').click(function() {
     data = $('.datainput').val();
-    calculate_Z(data, "fsmCanvas");
+    canvasId = "fsmCanvas";
+    calculate_Z(data);
     showResult();
     $('.showDataInfo').append(dataInfoStr);
     $('.result').append(resultStr);
 });
 
-function calculate_Z(data, canvasId) {
-    console.log(data);
+function calculate_Z(data) {
+    // console.log(data);
 
     // change to data code num and calculate each code's count
     var data_N = '';
@@ -106,7 +106,7 @@ function calculate_Z(data, canvasId) {
             }
         }
     }
-    console.log(data_N);
+    // console.log(data_N);
 
     // calculate Ns
     var data_Ns = [];
@@ -114,7 +114,7 @@ function calculate_Z(data, canvasId) {
         data_Ns[i] = data_N.substring(i, i+2);
     // for (var i = 0; i < data_Ns.length; i++)
     //     console.log(data_Ns[i]);
-    console.log('Ns: ' + data_Ns.length);
+    // console.log('Ns: ' + data_Ns.length);
 
     // create two dimension array freq[i][j] and calculate changing frequency
     var freq = new Array(codes.length);
@@ -268,11 +268,12 @@ function calculate_Z(data, canvasId) {
     for (var i = 0; i < codes.length; i++)
         adjusted_Zscore[i] = new Array(codes.length);
     for (var i = 0; i < codes.length; i++) {
-        for (var j = 0; j < codes.length; j++)
+        for (var j = 0; j < codes.length; j++) {
             if (exp_prob[i][j] == 0)
                 adjusted_Zscore[i][j] = 0;
             else
                 adjusted_Zscore[i][j] = (freq[i][j]-exp_freq[i][j])/Math.sqrt(data_Ns.length*exp_prob[i][j]*(1-exp_prob[i][j]));
+        }
     }
     // show result[5]: adjusted Z score table
     result[5] = `<table border=1 class="resulttable-content">
@@ -288,9 +289,9 @@ function calculate_Z(data, canvasId) {
         for (var j = 0; j < codes.length; j++) {
             result[5] += `<td class="text-center">`;
             if (adjusted_Zscore[i][j] >= 2.58)
-                result[5] += `<font style="color: red">${adjusted_Zscore[i][j].toFixed(2)}</font>`;
+                result[5] += `<font style="color: red">${adjusted_Zscore[i][j].toFixed(2)}**</font>`;
             else if (adjusted_Zscore[i][j] >= 1.96)
-                result[5] += `<font style="color: black">${adjusted_Zscore[i][j].toFixed(2)}</font>`;
+                result[5] += `<font style="color: black">${adjusted_Zscore[i][j].toFixed(2)}*</font>`;
             else
                 result[5] += `<font style="color: #999">${adjusted_Zscore[i][j].toFixed(2)}</font></td>`;
         }
@@ -299,11 +300,11 @@ function calculate_Z(data, canvasId) {
     result[5] += `</table>`;
 
     // show result[6]: draw canvas
-    result[6] = `<canvas id="${canvasId}" width="400" height="400"></canvas>`;
+    result[6] = `<p><canvas id="${canvasId}" width="500" height="500"></canvas></p>`;
     $(document).ready(function() {
         var c = document.getElementById(canvasId);
         var ctx = c.getContext("2d");
-        var c_width = 400;
+        var c_width = 500;
 
         // make canvas high resolution
         if(window.devicePixelRatio){
@@ -317,39 +318,58 @@ function calculate_Z(data, canvasId) {
         // 校正 html canvas 線條模糊( 所有座標平移 0.5px，且線條盡量以整數座標繪製，所以大部分之座標皆以 Math.round 取整數 )
         ctx.translate(0.5, 0.5);
 
-        var center_x = c_width/2;
-        var center_y = c_width/2;
         var radius = 35;
         var x = [], y = [], font_x = [];
         var tmpAngle, font_y;
         ctx.save();
-        ctx.translate(center_x, center_y);
+        ctx.translate(c_width/2, c_width/2);
         ctx.font = "35px Gentium Basic";
         for (var i = 0; i < codes.length; i++) {
             tmpAngle = i*(360/codes.length)*Math.PI/180;
-            x.push(Math.round(150*Math.cos(tmpAngle)));
-            y.push(Math.round(150*Math.sin(tmpAngle)));
+            x.push(Math.round(180*Math.cos(tmpAngle)));
+            y.push(Math.round(180*Math.sin(tmpAngle)));
             font_x.push(Math.round(ctx.measureText(codes[i]).width/2));
             font_y = 10;
         }
-        console.log(x);
-        console.log(y);
+        // console.log(x);
+        // console.log(y);
         for (var i = 0; i < codes.length; i++) {
             tmpAngle = (360/codes.length)*Math.PI/180;
             for (var j = 0; j < codes.length; j++) {
                 // console.log(adjusted_Zscore[i][j]);
                 if (adjusted_Zscore[i][j] != 0) {
-                    if (adjusted_Zscore[i][j] >= 2.58)
-                        paintArrow(x[i], y[i], x[j], y[j], radius, 5, "red");
-                    else if (adjusted_Zscore[i][j] >= 1.96)
-                        paintArrow(x[i], y[i], x[j], y[j], radius, 3, "black");
-                    else
-                        paintArrow(x[i], y[i], x[j], y[j], radius, 1, "gray");
+                    if (i == j) {
+                        if (adjusted_Zscore[i][j] >= 2.58)
+                            paintReverseArrow(x[i], y[i], radius, 5, "red");
+                        else if (adjusted_Zscore[i][j] >= 1.96)
+                            paintReverseArrow(x[i], y[i], radius, 3, "black");
+                        else
+                            paintReverseArrow(x[i], y[i], radius, 1, "gray");
+                    } else {
+                        if (adjusted_Zscore[i][j] >= 2.58)
+                            paintArrow(x[i], y[i], x[j], y[j], radius, 5, "red");
+                        else if (adjusted_Zscore[i][j] >= 1.96)
+                            paintArrow(x[i], y[i], x[j], y[j], radius, 3, "black");
+                        else
+                            paintArrow(x[i], y[i], x[j], y[j], radius, 1, "gray");
+                    }
                 }
             }
         }
-        function distance(x1, x2, y1, y2) {
-            return Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
+        function paintReverseArrow(centerX, centerY, radius, width, color) {
+            ctx.save();
+            ctx.beginPath();
+            var dis = Math.sqrt(Math.pow(centerX, 2)+Math.pow(centerY, 2));
+            var ratio = (dis+radius)/dis;
+            var newX = ratio*centerX;
+            var newY = ratio*centerY;
+            // console.log(centerX+' '+centerY+' '+newX+' '+newY);
+            ctx.arc(newX, newY, 25, 0, 2 * Math.PI);
+            ctx.lineWidth = width;
+            ctx.strokeStyle = color;
+            ctx.closePath();
+            ctx.stroke();
+            ctx.restore();
         }
         function paintArrow (startX, startY, endX, endY, radius, width, color) {
             ctx.save();
@@ -361,6 +381,7 @@ function calculate_Z(data, canvasId) {
             ctx.closePath();
             ctx.stroke();
             ctx.restore();
+
             var ratio = radius/distance(startX, endX, startY, endY);
             var headend_x = endX-(endX-startX)*ratio;
             var headend_y = endY-(endY-startY)*ratio;
@@ -388,9 +409,11 @@ function calculate_Z(data, canvasId) {
             ctx.lineTo(endX, endY);
             ctx.lineWidth = width;
             ctx.strokeStyle = color;
+            ctx.closePath();
             ctx.stroke();
             ctx.restore();
         }
+        // paint circle state and fill text
         for (var i = 0; i < codes.length; i++) {
             ctx.beginPath();
             ctx.save();
@@ -404,9 +427,33 @@ function calculate_Z(data, canvasId) {
             ctx.closePath();
             ctx.stroke();
         }
+        function distance(x1, x2, y1, y2) {
+            return Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
+        }
         ctx.restore();
     });
+    for (var i = 0; i < codes.length; i++) {
+        for (var j = 0; j < codes.length; j++) {
+            if (j == 0)
+                result[6] += `<div class="resultZ">`;
+            if (adjusted_Zscore[i][j] >= 2.58)
+                result[6] += `<font style="color: red">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}**</font>`;
+            else if (adjusted_Zscore[i][j] >= 1.96)
+                result[6] += `<font style="color: black">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}*</font>`;
+            else
+                result[6] += `<font style="color: #999">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}</font>`;
+            result[6] += `<br>`;
+            if (j % codes.length == codes.length-1)
+                result[6] += `</div>`;
+        }
+    }
+    
+    return adjusted_Zscore;
 }
+
+// function calGroupAverage (scoreZ_Arr, size) {
+//     console.log(size);
+// }
 
 function showResult() {
     dataInfoStr = `<ul class="dataInfoList">
@@ -432,119 +479,4 @@ function showResult() {
                 </tr>`;
     }
     resultStr += `</table>`;
-}
-
-var dataObj = [];
-function load_WebdiskData() {
-    $('.showDataInfo_webdisk').empty();
-    $('.result_webdisk').empty();
-
-    $.getJSON("webdisk_inputdata.json", function(data) {
-        dataObj = data;
-        var users = [];
-        for (var i in dataObj) {
-            if(!users.includes(dataObj[i].account)){
-                users.push(dataObj[i].account);
-            }
-        }
-        users.sort();
-
-        var userlist = "";
-        for (var i in users)
-            userlist += "<option value = "+users[i]+">"+users[i]+"</option>";
-        $('#userList_webdisk').append(userlist);
-    });
-}
-
-function select_webdiskData(){
-    $('.showDataInfo_webdisk').empty();
-    $('.result_webdisk').empty();
-
-    var user = $('#userList_webdisk').val();
-    console.log(user);
-
-    data = '';
-    for (var i in dataObj) {
-        if (dataObj[i].account == user)
-            data += dataObj[i].code;
-    }
-    // console.log(data;
-
-    codes = ['A', 'B', 'C', 'D'];
-    behaviors = ['使用模擬器', '進行測驗', '看PPT', '看影片'];
-    calculate_Z(data, "fsmCanvas_webdisk");
-    showResult();
-    $('.showDataInfo_webdisk').append(`<div class="stepTitle">Results</div>`+dataInfoStr);
-    $('.result_webdisk').append(resultStr);
-}
-
-function load_pigSaviorData(){
-    $('.showDataInfo_pigsavior').empty();
-    $('.result_pigsavior').empty();
-
-    $.getJSON("pigSavior_inputdata.json", function(data){
-        dataObj = data;
-        var users = [], scenes = [];
-        for (var i in dataObj){
-            if(!users.includes(dataObj[i].user_id)){
-                users.push(dataObj[i].user_id);
-            }
-            if(!scenes.includes(dataObj[i].game_scene)){
-                scenes.push(dataObj[i].game_scene);
-            }
-        }
-
-        users.sort((a, b) => a - b);
-        scenes.sort((a, b) => a.slice(5)-b.slice(5));
-
-        userlist = "", scenelist = "";
-        for (var i in users){
-            // console.log(users[i]);
-            userlist += "<option value = "+users[i]+">"+users[i]+"</option>";
-        }
-        document.getElementById('userList').innerHTML = userlist;
-        gamestage = "";
-        for (var i in scenes){
-            scenelist += "<option value = "+scenes[i]+">"+scenes[i]+"</option>";
-        }
-        document.getElementById('sceneList').innerHTML = scenelist;
-    });
-}
-
-function select_pigSaviorData(){
-    $('.showDataInfo_pigsavior').empty();
-    $('.result_pigsavior').empty();
-
-    var userSelect = document.getElementById("userList");
-    var user = userSelect.options[userSelect.selectedIndex].value;
-    var sceneSelect = document.getElementById("sceneList");
-    var scene = sceneSelect.options[sceneSelect.selectedIndex].value;
-
-    codes = [];
-    behaviors = [];
-    data = '';
-    for (var i in dataObj){
-        if (dataObj[i].user_id == user && dataObj[i].game_scene == scene){
-            if(!behaviors.includes(dataObj[i].target)){
-                behaviors.push(dataObj[i].target);
-                data += CODE[behaviors.length-1];
-                codes.push(CODE[behaviors.length-1]);
-            }else{
-                for(j = 0; j < behaviors.length; j++){
-                    if(behaviors[j] == dataObj[i].target){
-                        data += CODE[j];
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    // console.log(data);
-    console.log(codes);
-    console.log(behaviors);
-
-    calculate_Z(data, "fsmCanvas_pigsavior");
-    showResult();
-    $('.showDataInfo_pigsavior').append(`<div class="stepTitle">Results</div>`+dataInfoStr);
-    $('.result_pigsavior').append(resultStr);
 }

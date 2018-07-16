@@ -17,10 +17,28 @@
 	</head>
 	<body>
 		<div class="navbar navbar-default">
-            <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
-            <div class="navbar-nav">
-                <a href="#" id="clickWebdisk" onclick="load_WebdiskData();">Webdisk</a>
-                <a href="#" id="clickPigsavior" onclick="load_pigSaviorData();">PigSavior</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#" id="clickWebdiskSingle" onclick="load_WebdiskData();">Webdisk</a></li>
+                    <li><a href="#" id="clickPigsaviorSingle" onclick="load_pigSaviorData();">PigSavior</a></li>
+                    <!-- <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Webdisk <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" id="clickWebdiskSingle" onclick="load_WebdiskData();">Single User</a></li>
+                          <li><a href="#" id="clickWebdiskGroup" >Group User</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PigSavior <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" id="clickPigsaviorSingle" onclick="load_pigSaviorData(0);">Single User</a></li>
+                          <li><a href="#" id="clickPigsaviorGroup" onclick="load_pigSaviorData(1);">Group User</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
             </div>
 		</div>
 
@@ -41,14 +59,16 @@
                                         <input type="text" class="behaviorinput" required>
                                     </span>
                                 </div>
+                                <div class="operateCodeBtns">
+                                    <button id="deleteCode" class="btn custombtn circletype disOutline-btn" onclick="deleteCode(1);">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="operateCodeBtns">
                             <button id="createCode" class="btn custombtn circletype disOutline-btn">
                                 <i class="fa fa-plus"></i>
-                            </button>
-                            <button id="deleteCode" class="btn custombtn circletype disOutline-btn">
-                                <i class="fa fa-minus"></i>
                             </button>
                         </div>
                     </div>
@@ -83,11 +103,15 @@
                 </div>
             </div>
 
-            <div id="webdiskAnalysis" style="display: none">
+            <div id="webdiskAnalysisSingle" class="webdiskdiv">
                 <form>
                     <div class="text-center">
-                        <div class="sub-div webdisk-filter">
-                            <p class="inlineblock">Choose User：</p>
+                        <div class="sub-div webdisk-filter text-left">
+                            <p class="inlineblock">Choose Time:</p>
+                            <select id="timeList_webdisk" class="disOutline-select"></select>
+                        </div>
+                        <div class="sub-div webdisk-filter text-left">
+                            <p class="inlineblock">Choose User:</p>
                             <select id="userList_webdisk" class="disOutline-select"></select>
                         </div>
                         <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskData()" value="Submit">
@@ -98,24 +122,41 @@
                 </form>
             </div>
 
-            <div id="pigsaviorAnalysis" style="display: none">
-                <!-- <div class="stepTitle text-center sub-div">pigsavior_analysis</div> -->
+            <div id="webdiskAnalysisGroup" class="webdiskdiv">
+                <div class="text-center">
+                    <div class="groupResult_webdisk"></div>
+                </div>
+            </div>
+
+            <div id="pigsaviorAnalysisSingle" class="pigsaviordiv">
                 <form>
                     <div class="text-center">
-                        <div class="sub-div left-align">
-                            <p class="inlineblock">Choose User：</p>
-                            <select id="userList" class="disOutline-select"></select>
+                        <div class="sub-div text-left">
+                            <p class="inlineblock">Choose User:</p>
+                            <select id="userList_pigsavior" class="disOutline-select"></select>
                         </div>
-                        <div class="sub-div left-align">
-                            <p class="inlineblock left-align">Choose Stage：</p>
-                            <select id="sceneList" class="disOutline-select"></select>
+                        <div class="sub-div text-left">
+                            <p class="inlineblock text-left">Choose Stage:</p>
+                            <select id="sceneList_pigsavior" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorData()" value="Submit">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorData();" value="Submit">
                         <hr>
                         <div class="showDataInfo_pigsavior"></div>
                         <div class="result_pigsavior"></div>
                     </div>
                 </form>
+            </div>
+
+            <div id="pigsaviorAnalysisGroup" class="pigsaviordiv">
+                <div class="text-center">
+                    <div class="sub-div text-left">
+                        <p class="inlineblock text-left">Choose Stage:</p>
+                        <select id="sceneList_pigsavior_group" class="disOutline-select"></select>
+                    </div>
+                    <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorGroupScene();" value="Submit">
+                    <hr>
+                    <div class="groupResult_pigsavior"></div>
+                </div>
             </div>
 
         </div>
@@ -133,6 +174,8 @@
 
         <script src="js/index.js"></script>
         <script src="js/sequentialAnalysis.js"></script>
+        <script src="js/webdisk_analysis.js"></script>
+        <script src="js/pigsavior_analysis.js"></script>
 
 	</body>
 </html>
