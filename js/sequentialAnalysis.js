@@ -288,9 +288,9 @@ function calculate_Z(data) {
                         <td class="text-center">${codes[i]}</td>`;
         for (var j = 0; j < codes.length; j++) {
             result[5] += `<td class="text-center">`;
-            if (adjusted_Zscore[i][j] >= 2.58)
+            if (Math.abs(adjusted_Zscore[i][j]) >= 2.58)
                 result[5] += `<font style="color: red">${adjusted_Zscore[i][j].toFixed(2)}**</font>`;
-            else if (adjusted_Zscore[i][j] >= 1.96)
+            else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                 result[5] += `<font style="color: black">${adjusted_Zscore[i][j].toFixed(2)}*</font>`;
             else
                 result[5] += `<font style="color: #999">${adjusted_Zscore[i][j].toFixed(2)}</font></td>`;
@@ -339,16 +339,16 @@ function calculate_Z(data) {
                 // console.log(adjusted_Zscore[i][j]);
                 if (adjusted_Zscore[i][j] != 0) {
                     if (i == j) {
-                        if (adjusted_Zscore[i][j] >= 2.58)
+                        if (Math.abs(adjusted_Zscore[i][j]) >= 2.58)
                             paintReverseArrow(x[i], y[i], radius, 5, "red");
-                        else if (adjusted_Zscore[i][j] >= 1.96)
+                        else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                             paintReverseArrow(x[i], y[i], radius, 3, "black");
                         else
                             paintReverseArrow(x[i], y[i], radius, 1, "gray");
                     } else {
-                        if (adjusted_Zscore[i][j] >= 2.58)
+                        if (Math.abs(adjusted_Zscore[i][j]) >= 2.58)
                             paintArrow(x[i], y[i], x[j], y[j], radius, 5, "red");
-                        else if (adjusted_Zscore[i][j] >= 1.96)
+                        else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                             paintArrow(x[i], y[i], x[j], y[j], radius, 3, "black");
                         else
                             paintArrow(x[i], y[i], x[j], y[j], radius, 1, "gray");
@@ -436,9 +436,9 @@ function calculate_Z(data) {
         for (var j = 0; j < codes.length; j++) {
             if (j == 0)
                 result[6] += `<div class="resultZ">`;
-            if (adjusted_Zscore[i][j] >= 2.58)
+            if (Math.abs(adjusted_Zscore[i][j]) >= 2.58)
                 result[6] += `<font style="color: red">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}**</font>`;
-            else if (adjusted_Zscore[i][j] >= 1.96)
+            else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                 result[6] += `<font style="color: black">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}*</font>`;
             else
                 result[6] += `<font style="color: #999">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}</font>`;
