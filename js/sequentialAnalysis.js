@@ -293,7 +293,7 @@ function calculate_Z(data) {
             else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                 result[5] += `<font style="color: black">${adjusted_Zscore[i][j].toFixed(2)}*</font>`;
             else
-                result[5] += `<font style="color: #999">${adjusted_Zscore[i][j].toFixed(2)}</font></td>`;
+                result[5] += `<font style="color: #666">${adjusted_Zscore[i][j].toFixed(2)}</font></td>`;
         }
         result[5] += `</tr>`;
     }
@@ -344,14 +344,14 @@ function calculate_Z(data) {
                         else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                             paintReverseArrow(x[i], y[i], radius, 3, "black");
                         else
-                            paintReverseArrow(x[i], y[i], radius, 1, "gray");
+                            paintReverseArrow(x[i], y[i], radius, 1, "#666");
                     } else {
                         if (Math.abs(adjusted_Zscore[i][j]) >= 2.58)
                             paintArrow(x[i], y[i], x[j], y[j], radius, 5, "red");
                         else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                             paintArrow(x[i], y[i], x[j], y[j], radius, 3, "black");
                         else
-                            paintArrow(x[i], y[i], x[j], y[j], radius, 1, "gray");
+                            paintArrow(x[i], y[i], x[j], y[j], radius, 1, "#666");
                     }
                 }
             }
@@ -441,7 +441,7 @@ function calculate_Z(data) {
             else if (Math.abs(adjusted_Zscore[i][j]) >= 1.96)
                 result[6] += `<font style="color: black">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}*</font>`;
             else
-                result[6] += `<font style="color: #999">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}</font>`;
+                result[6] += `<font style="color: #666">${codes[i]}->${codes[j]}: ${adjusted_Zscore[i][j].toFixed(2)}</font>`;
             result[6] += `<br>`;
             if (j % codes.length == codes.length-1)
                 result[6] += `</div>`;

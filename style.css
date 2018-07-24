@@ -6,7 +6,7 @@
 	font-size: 18px;
 	font-family: 'Gentium Basic', 'Noto Sans TC', sans-serif;
 	letter-spacing: 1px;
-	color: #666;
+	color: #333;
 }
 
 hr {
@@ -288,7 +288,7 @@ td.behavioritems {
 	text-align: left;
 }
 .dataInfoText {
-	color: #999;
+	color: #666;
 }
 .datasample {
 	width: 60vw;
