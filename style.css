@@ -322,14 +322,10 @@ table.resulttable-content td {
 
 /* pigSavior */
 .sub-div {
-	width: 230px;
+	width: 25vw;
 	margin: auto;
 	margin-bottom: 20px;
 }
-.sub-div.webdisk-filter {
-	width: 400px;
-}
-
 
 /* group result */
 .group-title {

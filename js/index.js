@@ -8,31 +8,31 @@ $(document).ready(function() {
 		window.location.href = './index.html';
 	});
 
-	$('#clickWebdiskSingle').click(function() {
+	$('#clickWebdiskLA').click(function() {
 		$('.stepdiv').hide();
 		$('.pigsaviordiv').hide();
-		$('#webdiskAnalysisGroup').hide();
-		$('#webdiskAnalysisSingle').show();
+		$('#webdiskAnalysisSIMU').hide();
+		$('#webdiskAnalysisLA').show();
 	});
 
-	$('#clickWebdiskGroup').click(function() {
+	$('#clickWebdiskSIMU').click(function() {
 		$('.stepdiv').hide();
 		$('.pigsaviordiv').hide();
-		$('#webdiskAnalysisSingle').hide();
-		$('#webdiskAnalysisGroup').show();
+		$('#webdiskAnalysisLA').hide();
+		$('#webdiskAnalysisSIMU').show();
 	});
 
-	$('#clickPigsaviorSingle').click(function() {
+	$('#clickPigsaviorNPC').click(function() {
 		$('.stepdiv').hide();
 		$('.webdiskdiv').hide();
-		$('#pigsaviorAnalysisGroup').hide();
-		$('#pigsaviorAnalysisSingle').show();
+		$('#pigsaviorAnalysisMIS').hide();
+		$('#pigsaviorAnalysisNPC').show();
 	});
 
-	$('#clickPigsaviorGroup').click(function() {
+	$('#clickPigsaviorMIS').click(function() {
 		$('.stepdiv').hide();
 		$('.webdiskdiv').hide();
-		$('#pigsaviorAnalysisSingle').hide();
-		$('#pigsaviorAnalysisGroup').show();
+		$('#pigsaviorAnalysisNPC').hide();
+		$('#pigsaviorAnalysisMIS').show();
 	});
 });

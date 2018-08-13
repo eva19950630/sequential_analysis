@@ -22,22 +22,20 @@
                     <a href="./index.html" class="navbar-brand">Sequential Analysis Simulator</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="#" id="clickWebdiskSingle" onclick="load_WebdiskData();">Webdisk</a></li>
-                    <li><a href="#" id="clickPigsaviorSingle" onclick="load_pigSaviorData();">PigSavior</a></li>
-                    <!-- <li class="dropdown">
+                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Webdisk <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#" id="clickWebdiskSingle" onclick="load_WebdiskData();">Single User</a></li>
-                          <li><a href="#" id="clickWebdiskGroup" >Group User</a></li>
+                          <li><a href="#" id="clickWebdiskLA" onclick="load_WebdiskLAData();">Approach</a></li>
+                          <li><a href="#" id="clickWebdiskSIMU" onclick="load_WebdiskSimuData();">Simulator</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">PigSavior <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#" id="clickPigsaviorSingle" onclick="load_pigSaviorData(0);">Single User</a></li>
-                          <li><a href="#" id="clickPigsaviorGroup" onclick="load_pigSaviorData(1);">Group User</a></li>
+                          <li><a href="#" id="clickPigsaviorNPC" onclick="load_pigSaviorNPCData();">NPC</a></li>
+                          <li><a href="#" id="clickPigsaviorMIS" onclick="load_pigSaviorMathData();">Misconception</a></li>
                         </ul>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
 		</div>
@@ -103,60 +101,76 @@
                 </div>
             </div>
 
-            <div id="webdiskAnalysisSingle" class="webdiskdiv">
+            <div id="webdiskAnalysisLA" class="webdiskdiv">
                 <form>
                     <div class="text-center">
-                        <div class="sub-div webdisk-filter text-left">
+                        <div class="sub-div text-left">
                             <p class="inlineblock">Choose Time:</p>
-                            <select id="timeList_webdisk" class="disOutline-select"></select>
+                            <select id="timeList_webdisk_la" class="disOutline-select"></select>
                         </div>
-                        <div class="sub-div webdisk-filter text-left">
+                        <div class="sub-div text-left">
                             <p class="inlineblock">Choose User:</p>
-                            <select id="userList_webdisk" class="disOutline-select"></select>
+                            <select id="userList_webdisk_la" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskData()" value="Submit">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskLAData()" value="Submit">
                         <hr>
-                        <div class="showDataInfo_webdisk"></div>
-                        <div class="result_webdisk"></div>
+                        <div class="showDataInfo_webdisk_la"></div>
+                        <div class="result_webdisk_la"></div>
                     </div>
                 </form>
             </div>
 
-            <div id="webdiskAnalysisGroup" class="webdiskdiv">
-                <div class="text-center">
-                    <div class="groupResult_webdisk"></div>
-                </div>
+            <div id="webdiskAnalysisSIMU" class="webdiskdiv">
+                <form>
+                    <div class="text-center">
+                        <div class="sub-div text-left">
+                            <p class="inlineblock">Choose Time:</p>
+                            <select id="timeList_webdisk_simu" class="disOutline-select"></select>
+                        </div>
+                        <div class="sub-div text-left">
+                            <p class="inlineblock">Choose User:</p>
+                            <select id="userList_webdisk_simu" class="disOutline-select"></select>
+                        </div>
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskSimuData()" value="Submit">
+                        <hr>
+                        <div class="showDataInfo_webdisk_simu"></div>
+                        <div class="result_webdisk_simu"></div>
+                    </div>
+                </form>
             </div>
 
-            <div id="pigsaviorAnalysisSingle" class="pigsaviordiv">
+            <div id="pigsaviorAnalysisNPC" class="pigsaviordiv">
                 <form>
                     <div class="text-center">
                         <div class="sub-div text-left">
                             <p class="inlineblock">Choose User:</p>
-                            <select id="userList_pigsavior" class="disOutline-select"></select>
+                            <select id="userList_pigsavior_npc" class="disOutline-select"></select>
                         </div>
                         <div class="sub-div text-left">
                             <p class="inlineblock text-left">Choose Stage:</p>
-                            <select id="sceneList_pigsavior" class="disOutline-select"></select>
+                            <select id="sceneList_pigsavior_npc" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorData();" value="Submit">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorNPCData();" value="Submit">
                         <hr>
-                        <div class="showDataInfo_pigsavior"></div>
-                        <div class="result_pigsavior"></div>
+                        <div class="showDataInfo_pigsavior_npc"></div>
+                        <div class="result_pigsavior_npc"></div>
                     </div>
                 </form>
             </div>
 
-            <div id="pigsaviorAnalysisGroup" class="pigsaviordiv">
-                <div class="text-center">
-                    <div class="sub-div text-left">
-                        <p class="inlineblock text-left">Choose Stage:</p>
-                        <select id="sceneList_pigsavior_group" class="disOutline-select"></select>
+            <div id="pigsaviorAnalysisMIS" class="pigsaviordiv">
+                <form>
+                    <div class="text-center">
+                        <div class="sub-div text-left">
+                            <p class="inlineblock">Choose User:</p>
+                            <select id="userList_pigsavior_math" class="disOutline-select"></select>
+                        </div>
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorMisResult();" value="Submit">
+                        <hr>
+                        <div class="showDataInfo_pigsavior_mis"></div>
+                        <div class="result_pigsavior_mis"></div>
                     </div>
-                    <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_pigSaviorGroupScene();" value="Submit">
-                    <hr>
-                    <div class="groupResult_pigsavior"></div>
-                </div>
+                </form>
             </div>
 
         </div>
