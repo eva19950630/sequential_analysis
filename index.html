@@ -27,6 +27,7 @@
                         <ul class="dropdown-menu">
                           <li><a href="#" id="clickWebdiskLA" onclick="load_WebdiskLAData();">Approach</a></li>
                           <li><a href="#" id="clickWebdiskSIMU" onclick="load_WebdiskSimuData();">Simulator</a></li>
+                          <li><a href="#" id="clickWebdiskGRP_grade" onclick="load_WebdiskLADataforGroup();">Group_Grade</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -112,7 +113,7 @@
                             <p class="inlineblock">Choose User:</p>
                             <select id="userList_webdisk_la" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskLAData()" value="Submit">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskLAData();" value="Submit">
                         <hr>
                         <div class="showDataInfo_webdisk_la"></div>
                         <div class="result_webdisk_la"></div>
@@ -131,12 +132,37 @@
                             <p class="inlineblock">Choose User:</p>
                             <select id="userList_webdisk_simu" class="disOutline-select"></select>
                         </div>
-                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskSimuData()" value="Submit">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="select_webdiskSimuData();" value="Submit">
                         <hr>
                         <div class="showDataInfo_webdisk_simu"></div>
                         <div class="result_webdisk_simu"></div>
                     </div>
                 </form>
+            </div>
+
+            <div id="webdiskAnalysisGPR_grade" class="webdiskdiv group">
+                <div class="text-center">
+                    <p>使用說明：請先選擇時間，並於下方貼上學生學號與學期總成績(用"換行"隔開每一位成員)。</p>
+                    <div class="grptimedata-div">
+                        <p class="inlineblock">Choose Time:</p>
+                        <select id="timeList_webdisk_grpGrade" class="disOutline-select"></select>
+                    </div>
+                    <div class="grpdata-div">
+                        <p>User</p>
+                        <textarea class="datainput groupdata" id="webdisk_userdata"></textarea>
+                    </div>
+                    <div class="grpdata-div">
+                        <p>Grade</p>
+                        <textarea class="datainput groupdata" id="webdisk_gradedata"></textarea>
+                    </div>
+                    <div class="grpdataBtn">
+                        <input type="button" class="btn custombtn specific disOutline-btn" onclick="get_webdiskUserGrade();" value="Submit">
+                    </div>
+                    <hr>
+                    <div class="chooseResultBtn_webdisk_grpGrade"></div>
+                    <div class="showDataInfo_webdisk_grpGrade"></div>
+                    <div class="result_webdisk_grpGrade"></div>
+                </div>
             </div>
 
             <div id="pigsaviorAnalysisNPC" class="pigsaviordiv">

@@ -12,6 +12,7 @@ $(document).ready(function() {
 		$('.stepdiv').hide();
 		$('.pigsaviordiv').hide();
 		$('#webdiskAnalysisSIMU').hide();
+		$('#webdiskAnalysisGPR_grade').hide();
 		$('#webdiskAnalysisLA').show();
 	});
 
@@ -19,7 +20,16 @@ $(document).ready(function() {
 		$('.stepdiv').hide();
 		$('.pigsaviordiv').hide();
 		$('#webdiskAnalysisLA').hide();
+		$('#webdiskAnalysisGPR_grade').hide();
 		$('#webdiskAnalysisSIMU').show();
+	});
+
+	$('#clickWebdiskGRP_grade').click(function() {
+		$('.stepdiv').hide();
+		$('.pigsaviordiv').hide();
+		$('#webdiskAnalysisLA').hide();
+		$('#webdiskAnalysisSIMU').hide();
+		$('#webdiskAnalysisGPR_grade').show();
 	});
 
 	$('#clickPigsaviorNPC').click(function() {

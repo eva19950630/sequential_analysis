@@ -7,6 +7,8 @@ var dataInfoStr = '';
 var resultStr = '';
 var canvasId = '';
 var CODE = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+var resultItem = ['編碼轉換頻率表', '編碼轉換機率表', '編碼出現頻率與機率表<br>(出現機率=出現頻率/'+data.length+')', '編碼轉換期望機率表<br>(First-order model)', '編碼轉換期望頻率表', '調整後Z分數表', '行為轉移關係圖'];
+var adjusted_Zscore = [];
 
 // user input code
 $('#createCode').click(function() {
@@ -264,7 +266,7 @@ function calculate_Z(data) {
     result[4] += `</table>`;
 
     // create two dimension array adjusted_Zscore[i][j] and calculate adjusted Z score
-    var adjusted_Zscore = new Array(codes.length);
+    adjusted_Zscore = new Array(codes.length);
     for (var i = 0; i < codes.length; i++)
         adjusted_Zscore[i] = new Array(codes.length);
     for (var i = 0; i < codes.length; i++) {
@@ -300,7 +302,7 @@ function calculate_Z(data) {
     result[5] += `</table>`;
 
     // show result[6]: draw canvas
-    result[6] = `<p><canvas id="${canvasId}" width="500" height="500"></canvas></p>`;
+    result[6] = `<p><canvas id=${canvasId} width="500" height="500"></canvas></p>`;
     $(document).ready(function() {
         var c = document.getElementById(canvasId);
         var ctx = c.getContext("2d");
@@ -451,10 +453,6 @@ function calculate_Z(data) {
     return adjusted_Zscore;
 }
 
-// function calGroupAverage (scoreZ_Arr, size) {
-//     console.log(size);
-// }
-
 function showResult() {
     dataInfoStr = `<ul class="dataInfoList">
                         <li>Data sample: <div class="datasample"><font class="dataInfoText">${data}</font><div></li>
@@ -466,7 +464,6 @@ function showResult() {
     }
     dataInfoStr += `</ul></li></ul>`;
 
-    var resultItem = ['編碼轉換頻率表', '編碼轉換機率表', '編碼出現頻率與機率表<br>(出現機率=出現頻率/'+data.length+')', '編碼轉換期望機率表<br>(First-order model)', '編碼轉換期望頻率表', '調整後Z分數表', '行為轉移關係圖'];
     resultStr = `<table border=1 class="resulttable">
                     <tr>
                         <th class="resultitem-head">Item</th>

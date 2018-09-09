@@ -96,7 +96,9 @@ input:focus, textarea:focus {
 	box-shadow: 0px 5px #629FD1;
 	transition: .3s;
 }
-.custombtn:hover {
+.custombtn:hover,
+.custombtn.specific:hover,
+.custombtn.yellow:hover {
 	color: #fff;
 	box-shadow: none;
 	transform: translate(0, 5px);
@@ -105,10 +107,6 @@ input:focus, textarea:focus {
 	background: #FF8D8D;
 	border: 1px solid #FF8D8D;
 	box-shadow: 0px 5px #D17474;
-}
-.custombtn.specific:hover {
-	box-shadow: none;
-	transform: translate(0, 5px);
 }
 .custombtn.circletype {
 	border: none;
@@ -121,6 +119,14 @@ input:focus, textarea:focus {
 }
 .custombtn.circletype:hover {
 	transform: none;
+}
+.custombtn.classification {
+	width: 160px;
+}
+.custombtn.yellow {
+	background: #FFC14F;
+	border: 1px solid #FFC14F;
+	box-shadow: 0px 5px #F59F00;
 }
 
 
@@ -280,6 +286,10 @@ td.behavioritems {
 	width: 45vw;
 	height: 30vh;
 }
+.datainput.groupdata {
+	width: 15vw;
+	height: 40vh;
+}
 
 /* Step3 - Results */
 .dataInfoList {
@@ -296,8 +306,14 @@ td.behavioritems {
 	border: 1px solid #77C2FF;
 	border-radius: 3px;
 	padding: 3px 10px;
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	word-break: break-all;
+}
+.datasample.gradedata {
+	width: 40vw;
+	height: 250px;
+	text-align: center;
 }
 
 table.resulttable {
@@ -327,15 +343,24 @@ table.resulttable-content td {
 	margin-bottom: 20px;
 }
 
-/* group result */
-.group-title {
-	text-align: center;
-	width: 120px;
-	border: 1px #7AB8EA solid;
-	border-radius: 10px;
-	padding: 10px;
-	color: #7AB8EA;
-	margin: 20px 0 0 10vw;
+/* webdisk group result */
+.grptimedata-div {
+	margin: 20px 0 0;
+}
+.grpdata-div {
+	display: inline-block;
+	padding: 0 10px;
+}
+.grpdataBtn {
+	margin: 20px 0 0;
+}
+
+.chooseResultBtn_webdisk_grpGrade {
+	margin: 0 0 30px 0;
+}
+.chooseResultBtn_webdisk_grpGrade div {
+	display: inline-block;
+	padding: 0 3vw;
 }
 
 @media(max-width: 768px) {
