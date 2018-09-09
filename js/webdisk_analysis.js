@@ -155,10 +155,12 @@ function select_webdiskSimuData() {
 
 // Grade group
 function load_WebdiskLADataforGroup() {
+    $('#timeList_webdisk_grpGrade').empty();
     $('#webdisk_userdata').val('');
     $('#webdisk_gradedata').val('');
     $('.chooseResultBtn_webdisk_grpGrade').empty();
     $('.showDataInfo_webdisk_grpGrade').empty();
+    $('.result_webdisk_grpGrade').empty();
 
     $.getJSON("webdisk_LA.json", function(data) {
         dataObj = data;
@@ -254,7 +256,7 @@ function calcuGradeGrpAverZ_score(grpArray) {
     // show result info
     dataInfoStr = `<ul class="dataInfoList">
                         <li>Choose time: <font class="dataInfoText">${chooseTime}學年度</font></li>
-                        <li>Total users: <font class="dataInfoText">${grpArray.length}</font></li>
+                        <li>Group users / Total users: <font class="dataInfoText">${grpArray.length} / ${gradeUser_A.length+gradeUser_B.length+gradeUser_C.length}</font></li>
                         <li>User data: <div class="datasample gradedata">`;
     for (var i in grpArray)
         dataInfoStr += `<font class="dataInfoText">${grpdata[i][0]}, ${grpdata[i][1]}<br></font>`;
